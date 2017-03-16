@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+<title>Cocktail Finder</title>
+</head>
+<body>
+	<div class="container">
+		<h3>Cocktail Finder</h3>
+		<form action="#" th:action="@{/}" th:object="${filter}"
+			method="post">
+			<select th:field="*{zutaten}" class="form-control"
+				multiple="multiple">
+				<option th:each="zutat : ${allZutaten}" th:value="${zutat.zutat}"
+					th:text="${zutat.zutat}" />
+			</select>
+			<p>
+				<input class="btn btn-default" type="submit" value="Filtern" />
+			</p>
+		</form>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Zutaten</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cocktail : ${cocktails}">
+					<td th:text="${cocktail.name}" />
+					<td th:text="${cocktail.zutatenAsString()}" />
+				</tr>
+			</tbody>
+		</table>
+		<p class="text-primary">
+			<span th:text="${filterAsString}"></span>
+		</p>
+	</div>
+</body>
+</html>
