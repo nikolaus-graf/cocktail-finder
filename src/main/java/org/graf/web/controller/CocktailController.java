@@ -13,24 +13,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class HomeController {
+public class CocktailController {
 
 	private final CocktailService cocktailService;
 
 	@Autowired
-	public HomeController(CocktailService cocktailService) {
+	public CocktailController(CocktailService cocktailService) {
 		this.cocktailService = cocktailService;
 	}	
 
 	@RequestMapping("/")
 	public ModelAndView filter(@ModelAttribute Filter filter) {
 		Map<String, Object> attributeMap = new HashMap<>();
-		CocktailKarte cocktailKarte = cocktailService.findCocktailKarte();
-		attributeMap.put("cocktails", cocktailKarte.findCocktailsWithZutaten(filter.getZutaten()));
-		attributeMap.put("allZutaten", cocktailKarte.getAllZutaten());
-		attributeMap.put("filter", filter);		
-		attributeMap.put("filterAsString", filter.filterString());
 
-		return new ModelAndView("index", attributeMap);
+		attributeMap.put("zutaten", cocktailService.getAllZutaten());
+
+		return new ModelAndView("cocktails", attributeMap);
 	}
 }
