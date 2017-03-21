@@ -13,14 +13,13 @@
 <body>
 <div class="container">
     <h3>Cocktail Finder</h3>
-    <form action="#" th:action="@{/}" th:object="${filter}"
-          method="post">
-        <select id="zutaten" th:field="*{zutaten}" class="form-control"
-                multiple="multiple">
-            <option th:each="zutat : ${zutaten}" th:value="${zutat.zutat}"
-                    th:text="${zutat.zutat}"></option>
-        </select>
-    </form>
+
+    <select id="zutaten" th:field="*{zutaten}" class="form-control"
+            multiple="multiple">
+        <option th:each="zutat : ${zutaten}" th:value="${zutat.zutat}"
+                th:text="${zutat.zutat}"></option>
+    </select>
+
 
     <table id="cocktailTable" class="table table-striped">
         <thead>
