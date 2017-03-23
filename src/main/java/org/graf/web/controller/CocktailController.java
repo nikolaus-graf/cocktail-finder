@@ -27,11 +27,4 @@ public class CocktailController {
 
         return new ModelAndView("cocktails", attributeMap);
     }
-
-    @RequestMapping("/admin")
-    public ModelAndView admin() {
-        Map<String, Object> attributeMap = new HashMap<>();
-
-        return new ModelAndView("admin", attributeMap);
-    }
 }

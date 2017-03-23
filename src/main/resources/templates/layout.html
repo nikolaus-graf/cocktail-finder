@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
@@ -12,6 +12,15 @@
 </head>
 <body>
 <div class="container">
+    <ul class="nav nav-tabs">
+        <!-- Other links -->
+        <li role="presentation" th:class="${classActiveCocktails}">
+            <a th:href="@{/}">Cocktails</a>
+        </li>
+        <li role="presentation" th:class="${classActiveAdmin}">
+            <a th:href="@{/admin}">Admin</a>
+        </li>
+    </ul>
     <div layout:fragment="content">
 
     </div>
