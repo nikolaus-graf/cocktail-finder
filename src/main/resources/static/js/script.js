@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#cocktailsCocktailTable')
         .on('preXhr.dt', function (e, settings, data) {
-            data.zutaten = $('#zutaten').val();
+            data.zutaten = $('#cocktailsZutaten').val();
         })
         .DataTable({
             ajax: '/data/cocktails',
