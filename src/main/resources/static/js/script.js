@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('#cocktailTable')
+    $('#cocktailsCocktailTable')
         .on('preXhr.dt', function (e, settings, data) {
             data.zutaten = $('#zutaten').val();
         })
@@ -11,8 +11,8 @@ $(document).ready(function () {
             info: false
         })
 
-    $('#zutaten')
+    $('#cocktailsZutaten')
         .change(function () {
-            $('#cocktailTable').DataTable().ajax.reload();
+            $('#cocktailsCocktailTable').DataTable().ajax.reload();
         });
 });
