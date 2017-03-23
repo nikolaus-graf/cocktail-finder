@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ZutatRepository extends JpaRepository<Zutat, Long> {
 
-    Zutat findByZutat(String zutat);
+    Zutat findByName(String name);
 
 }

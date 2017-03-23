@@ -41,13 +41,13 @@ public class CocktailService {
     }
 
     @Transactional
-    public Zutat ensureZutatExists(String zutat) {
-        Zutat zutatDb = zutatRepository.findByZutat(zutat);
-        if (zutatDb == null) {
-            zutatDb = new Zutat(zutat);
-            zutatDb = zutatRepository.save(zutatDb);
+    public Zutat ensureZutatExists(String name) {
+        Zutat zutat = zutatRepository.findByName(name);
+        if (zutat == null) {
+            zutat = new Zutat(name);
+            zutat = zutatRepository.save(zutat);
         }
-        return zutatDb;
+        return zutat;
     }
 
     @Transactional

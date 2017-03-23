@@ -24,7 +24,13 @@ public class AdminService {
     @Transactional
     public List<Zutat> findAllZutaten(){
         return zutatRepository.findAll().stream()
-                .sorted(comparing(Zutat::getZutat))
+                .sorted(comparing(Zutat::getName))
                 .collect(toList());
+    }
+
+    @Transactional
+    public Zutat saveZutat(String name){
+        Zutat zutat = new Zutat(name);
+        return zutatRepository.save(zutat);
     }
 }

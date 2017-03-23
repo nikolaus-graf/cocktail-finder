@@ -26,7 +26,7 @@ public class CocktailFinderApplicationTests {
         cocktailKarte.addCocktail(longIsland);
         cocktailKarte.addCocktail(screwDriver);
 
-        cocktailKarte.findCocktailsWithZutaten(Arrays.asList(wodka.getZutat(), cola.getZutat())).forEach(System.out::println);
+        cocktailKarte.findCocktailsWithZutaten(Arrays.asList(wodka.getName(), cola.getName())).forEach(System.out::println);
 
     }
 

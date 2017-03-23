@@ -6,7 +6,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "Zutat", uniqueConstraints = {@UniqueConstraint(name = "uq_zutat_zutat", columnNames = {"zutat"})})
+@Table(name = "Zutat", uniqueConstraints = {@UniqueConstraint(name = "uq_zutat_zutat", columnNames = {"name"})})
 public class Zutat extends AbstractBaseEntity {
 
     /**
@@ -14,28 +14,28 @@ public class Zutat extends AbstractBaseEntity {
      */
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "zutat")
-    private String zutat;
+    @Column(name = "name")
+    private String name;
 
     public Zutat() {
 
     }
 
-    public Zutat(String zutat) {
-        this.zutat = zutat;
+    public Zutat(String name) {
+        this.name = name;
     }
 
-    public String getZutat() {
-        return zutat;
+    public String getName() {
+        return name;
     }
 
-    public void setZutat(String zutat) {
-        this.zutat = zutat;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
-        return "Zutat [zutat=" + zutat + "]";
+        return "Zutat [name=" + name + "]";
     }
 
 

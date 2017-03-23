@@ -35,7 +35,7 @@ public class CocktailKarte extends AbstractBaseEntity {
         return cocktails.stream()
                 .flatMap(cocktail -> cocktail.getZutaten().stream())
                 .distinct()
-                .sorted(comparing(Zutat::getZutat))
+                .sorted(comparing(Zutat::getName))
                 .collect(toSet());
     }
 

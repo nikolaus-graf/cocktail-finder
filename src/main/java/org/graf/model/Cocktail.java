@@ -65,7 +65,7 @@ public class Cocktail extends AbstractBaseEntity {
     public boolean containsAllZutaten(List<String> zutatenList) {
         for (String zutat : zutatenList) {
             boolean found = this.zutaten.stream()
-                    .map(Zutat::getZutat)
+                    .map(Zutat::getName)
                     .anyMatch(match -> zutat.equals(match));
             if (!found) {
                 return false;
@@ -76,7 +76,7 @@ public class Cocktail extends AbstractBaseEntity {
 
     public String zutatenAsString() {
         return this.zutaten.stream()
-                .map(Zutat::getZutat)
+                .map(Zutat::getName)
                 .sorted()
                 .collect(joining(", "));
     }

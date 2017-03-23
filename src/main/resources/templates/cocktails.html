@@ -1,16 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
 
-<!--/*@thymesVar id="zutat" type="org.graf.model.Zutat"*/-->
-<!--/*@thymesVar id="zutaten" type="java.util.List<Zutat>"*/-->
 <body>
 <div layout:fragment="content">
     <h3>Cocktail Finder</h3>
 
     <select id="cocktailsZutaten" th:field="*{zutaten}" class="form-control"
             multiple="multiple">
-        <option th:each="zutat : ${zutaten}" th:value="${zutat.zutat}"
-                th:text="${zutat.zutat}"></option>
+        <option th:each="zutat : ${zutaten}" th:value="${zutat.name}"
+                th:text="${zutat.name}"></option>
     </select>
 
 
