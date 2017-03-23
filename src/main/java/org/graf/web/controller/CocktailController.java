@@ -1,10 +1,8 @@
 package org.graf.web.controller;
 
 import org.graf.services.CocktailService;
-import org.graf.web.formbeans.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,11 +20,18 @@ public class CocktailController {
     }
 
     @RequestMapping("/")
-    public ModelAndView filter(@ModelAttribute Filter filter) {
+    public ModelAndView home() {
         Map<String, Object> attributeMap = new HashMap<>();
 
         attributeMap.put("zutaten", cocktailService.getAllZutaten());
 
         return new ModelAndView("cocktails", attributeMap);
+    }
+
+    @RequestMapping("/admin")
+    public ModelAndView admin() {
+        Map<String, Object> attributeMap = new HashMap<>();
+
+        return new ModelAndView("admin", attributeMap);
     }
 }
