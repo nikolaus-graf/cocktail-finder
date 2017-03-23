@@ -22,14 +22,14 @@ public class AdminService {
     }
 
     @Transactional
-    public List<Zutat> findAllZutaten(){
+    public List<Zutat> findAllZutaten() {
         return zutatRepository.findAll().stream()
                 .sorted(comparing(Zutat::getName))
                 .collect(toList());
     }
 
     @Transactional
-    public Zutat saveZutat(String name){
+    public Zutat saveZutat(String name) {
         Zutat zutat = new Zutat(name);
         return zutatRepository.save(zutat);
     }

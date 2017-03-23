@@ -14,9 +14,6 @@ import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 
-/**
- * Created by Niki on 21.03.2017.
- */
 @RestController
 public class CocktailDataController {
 
