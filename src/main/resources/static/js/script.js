@@ -30,7 +30,6 @@ $(document).ready(function () {
             $.ajax({
                 type: "PUT",
                 url: "/admin/data/zutat",
-                dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify({
                     "name": name
@@ -43,11 +42,11 @@ $(document).ready(function () {
         }
     };
 
-    $("#adminZutatSave").click(function () {
-        var name = $("#adminZutatName").val();
+    $('#adminZutatSave').click(function () {
+        var name = $('#adminZutatName').val();
         zutat.saveZutat(name, function (response) {
+            $('#adminZutatName').val("");
             $('#adminZutatTable').DataTable().ajax.reload();
-            $("#adminZutatName").val("");
         });
     });
 });
