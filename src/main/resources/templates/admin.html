@@ -3,10 +3,13 @@
 <body>
 <div layout:fragment="content">
     <h3>Cocktail Finder - Administration</h3>
-    <select id="adminZutaten" th:field="*{zutaten}" class="form-control">
-        <option th:each="zutat : ${zutaten}" th:value="${zutat.name}"
-                th:text="${zutat.name}"></option>
-    </select>
+    <table id="adminZutatTable" class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+        </thead>
+    </table>
 </div>
 </body>
 </html>
