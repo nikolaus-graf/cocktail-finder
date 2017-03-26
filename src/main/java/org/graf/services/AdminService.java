@@ -27,10 +27,4 @@ public class AdminService {
                 .sorted(comparing(Zutat::getName))
                 .collect(toList());
     }
-
-    @Transactional
-    public Zutat saveZutat(String name) {
-        Zutat zutat = new Zutat(name);
-        return zutatRepository.save(zutat);
-    }
 }

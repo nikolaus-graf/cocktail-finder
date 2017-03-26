@@ -45,7 +45,7 @@ public class CocktailDataController {
 
     @PutMapping("/admin/data/zutat")
     public void saveZutat(@RequestBody ZutatInfo zutatInfo) {
-        adminService.saveZutat(zutatInfo.getName());
+        cocktailService.ensureZutatExists(zutatInfo.getName());
     }
 
     private List<String[]> mapToTableData(List<Cocktail> cocktailsWithZutaten) {

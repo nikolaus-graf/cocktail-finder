@@ -31,7 +31,7 @@ public class CocktailKarte extends AbstractBaseEntity {
         cocktail.setCocktailKarte(this);
     }
 
-    public Set<Zutat> getAllZutaten() {
+    public Set<Zutat> getAllUsedZutaten() {
         return cocktails.stream()
                 .flatMap(cocktail -> cocktail.getZutaten().stream())
                 .distinct()

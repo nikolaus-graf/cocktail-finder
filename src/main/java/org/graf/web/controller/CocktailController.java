@@ -23,7 +23,7 @@ public class CocktailController {
     public ModelAndView home() {
         Map<String, Object> attributeMap = new HashMap<>();
 
-        attributeMap.put("zutaten", cocktailService.getAllZutaten());
+        attributeMap.put("zutaten", cocktailService.getAllUsedZutaten());
 
         return new ModelAndView("cocktails", attributeMap);
     }

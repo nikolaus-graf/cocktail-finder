@@ -25,8 +25,8 @@ public class CocktailService {
     }
 
     @Transactional(readOnly = true)
-    public Set<Zutat> getAllZutaten() {
-        return findCocktailKarte().getAllZutaten();
+    public Set<Zutat> getAllUsedZutaten() {
+        return findCocktailKarte().getAllUsedZutaten();
     }
 
     @Transactional(readOnly = true)
