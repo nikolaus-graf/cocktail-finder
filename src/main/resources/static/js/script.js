@@ -5,10 +5,13 @@ $(document).ready(function () {
         })
         .DataTable({
             ajax: '/cocktail/data/cocktails',
-            searching: false,
+            searching: true,
             paging: false,
             ordering: false,
-            info: false
+            info: false,
+            scrollY:        200,
+            scrollCollapse: true,
+            scroller:       true
         })
 
     $('#cocktailsZutaten')
@@ -19,10 +22,13 @@ $(document).ready(function () {
     $('#adminZutatTable')
         .DataTable({
             ajax: '/admin/data/zutaten',
-            searching: false,
+            searching: true,
             paging: false,
             ordering: false,
-            info: false
+            info: false,
+            scrollY:        200,
+            scrollCollapse: true,
+            scroller:       true
         })
 
     var zutat = {
