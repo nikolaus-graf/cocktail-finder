@@ -5,8 +5,7 @@
 <div layout:fragment="content">
     <h3>Cocktail Finder</h3>
 
-    <select id="cocktailsZutaten" th:field="*{zutaten}" class="form-control"
-            multiple="multiple">
+    <select id="cocktailsZutaten" th:field="*{zutaten}" class="form-control" multiple="multiple">
         <option th:each="zutat : ${zutaten}" th:value="${zutat.name}"
                 th:text="${zutat.name}"></option>
     </select>

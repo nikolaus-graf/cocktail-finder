@@ -22,7 +22,7 @@ $(document).ready(function () {
     $('#adminZutatTable')
         .DataTable({
             ajax: '/admin/data/zutaten',
-            searching: true,
+            searching: false,
             paging: false,
             ordering: false,
             info: false,
