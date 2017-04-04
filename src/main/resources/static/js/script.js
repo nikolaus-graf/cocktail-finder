@@ -55,4 +55,22 @@ $(document).ready(function () {
             $('#adminZutatTable').DataTable().ajax.reload();
         });
     });
+
+    $('#adminAddZutat').click(function () {
+        $("#adminAllZutaten > option").each(function() {
+            if(this.selected == true){
+                $("#adminSelectedZutaten").append('<option value=""" + this.value + """ >' + this.text + '</option>');
+                this.remove();
+            }
+        });
+    });
+
+    $('#adminRemoveZutat').click(function () {
+        $("#adminSelectedZutaten > option").each(function() {
+            if(this.selected == true){
+                $("#adminAllZutaten").append('<option value=""" + this.value + """ >' + this.text + '</option>');
+                this.remove();
+            }
+        });
+    });
 });
