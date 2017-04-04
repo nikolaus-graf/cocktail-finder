@@ -4,12 +4,14 @@ import org.graf.model.Cocktail;
 import org.graf.model.Zutat;
 import org.graf.services.AdminService;
 import org.graf.services.CocktailService;
+import org.graf.web.formbeans.CocktailInfo;
 import org.graf.web.formbeans.CocktailTableInfo;
 import org.graf.web.formbeans.ZutatInfo;
 import org.graf.web.formbeans.ZutatTableInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -46,6 +48,11 @@ public class CocktailDataController {
     @PutMapping("/admin/data/zutat")
     public void saveZutat(@RequestBody ZutatInfo zutatInfo) {
         cocktailService.ensureZutatExists(zutatInfo.getName());
+    }
+
+    @PutMapping("/admin/data/cocktail")
+    public void saveCocktail(@RequestBody CocktailInfo cocktailInfo) {
+        cocktailService.saveCocktail(cocktailInfo.getName(), asList(cocktailInfo.getZutaten()));
     }
 
     private List<String[]> mapToTableData(List<Cocktail> cocktailsWithZutaten) {

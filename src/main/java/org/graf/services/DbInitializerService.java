@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
+import java.util.Arrays;
+
+import static java.util.Arrays.asList;
 
 @Component
 public class DbInitializerService {
@@ -36,11 +39,11 @@ public class DbInitializerService {
         Zutat cachaca = cocktailService.ensureZutatExists("Cachaca");
 
         CocktailKarte cocktailKarte = new CocktailKarte();
-        cocktailKarte.addCocktail(new Cocktail("Cuba Libre", cola, rum, limette));
-        cocktailKarte.addCocktail(new Cocktail("Long Island Ice Tea", cola, rum, tequila, wodka, limette));
-        cocktailKarte.addCocktail(new Cocktail("Hurricane", orangenSaft, ananasSaft, rum, limette, amaretto));
-        cocktailKarte.addCocktail(new Cocktail("Mojito", braunerZucker, rum, limette, minze, soda));
-        cocktailKarte.addCocktail(new Cocktail("Caipirinha", braunerZucker, cachaca, limette));
+        cocktailKarte.addCocktail(new Cocktail("Cuba Libre", asList(cola, rum, limette)));
+        cocktailKarte.addCocktail(new Cocktail("Long Island Ice Tea", asList(cola, rum, tequila, wodka, limette)));
+        cocktailKarte.addCocktail(new Cocktail("Hurricane", asList(orangenSaft, ananasSaft, rum, limette, amaretto)));
+        cocktailKarte.addCocktail(new Cocktail("Mojito", asList(braunerZucker, rum, limette, minze, soda)));
+        cocktailKarte.addCocktail(new Cocktail("Caipirinha", asList(braunerZucker, cachaca, limette)));
 
         cocktailService.save(cocktailKarte);
     }

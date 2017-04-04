@@ -11,6 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class CocktailService {
@@ -53,5 +56,13 @@ public class CocktailService {
     @Transactional
     public void save(CocktailKarte cocktailKarte) {
         cocktailKarteRepository.save(cocktailKarte);
+    }
+
+    @Transactional
+    public void saveCocktail(String name, List<String> zutatenName) {
+        List<Zutat> zutaten = zutatenName.stream()
+                .map(zutat -> zutatRepository.findByName(zutat))
+                .collect(toList());
+        findCocktailKarte().addCocktail(new Cocktail(name, zutaten));
     }
 }

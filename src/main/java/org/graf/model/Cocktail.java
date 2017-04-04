@@ -31,9 +31,9 @@ public class Cocktail extends AbstractBaseEntity {
 
     }
 
-    public Cocktail(String name, Zutat... zutaten) {
+    public Cocktail(String name, List<Zutat> zutaten) {
         this.name = name;
-        Stream.of(zutaten).forEach(zutat -> addZutat(zutat));
+        zutaten.forEach(zutat -> addZutat(zutat));
     }
 
     public String getName() {
