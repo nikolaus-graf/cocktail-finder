@@ -63,6 +63,14 @@ $(document).ready(function () {
                     callback(response);
                 }
             });
+        },
+        sortSelect: function (select, options){
+            options.sort(function(a,b) {
+                if (a.text > b.text) return 1;
+                if (a.text < b.text) return -1;
+                return 0
+            });
+            select.empty().append( options );
         }
     };
 
@@ -81,6 +89,7 @@ $(document).ready(function () {
                 this.remove();
             }
         });
+        cocktail.sortSelect($("#adminSelectedZutaten"), $("#adminSelectedZutaten option"));
     });
 
     $('#adminRemoveZutat').click(function () {
@@ -90,6 +99,8 @@ $(document).ready(function () {
                 this.remove();
             }
         });
+
+        cocktail.sortSelect($("#adminAllZutaten"), $("#adminAllZutaten option"));
     });
 
     $('#adminCocktailSave').click(function () {
@@ -106,6 +117,7 @@ $(document).ready(function () {
                 $("#adminAllZutaten").append('<option value="' + this.value + '" >' + this.text + '</option>');
                 this.remove();
             });
+            cocktail.sortSelect($("#adminAllZutaten"), $("#adminAllZutaten option"));
         });
     });
 });
