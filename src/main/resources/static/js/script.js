@@ -64,7 +64,8 @@ $(document).ready(function () {
                 }
             });
         },
-        sortSelect: function (select, options){
+        sortSelect: function (select){
+            var options = select.find("option")
             options.sort(function(a,b) {
                 if (a.text > b.text) return 1;
                 if (a.text < b.text) return -1;
@@ -83,41 +84,41 @@ $(document).ready(function () {
     });
 
     $('#adminAddZutat').click(function () {
-        $("#adminAllZutaten > option").each(function () {
-            if (this.selected == true) {
+        $("#adminAllZutaten").find("> option").each(function () {
+            if (this.selected === true) {
                 $("#adminSelectedZutaten").append('<option value="' + this.value + '" >' + this.text + '</option>');
                 this.remove();
             }
         });
-        cocktail.sortSelect($("#adminSelectedZutaten"), $("#adminSelectedZutaten option"));
+        cocktail.sortSelect($("#adminSelectedZutaten"));
     });
 
     $('#adminRemoveZutat').click(function () {
-        $("#adminSelectedZutaten > option").each(function () {
-            if (this.selected == true) {
+        $("#adminSelectedZutaten").find("> option").each(function () {
+            if (this.selected === true) {
                 $("#adminAllZutaten").append('<option value="' + this.value + '" >' + this.text + '</option>');
                 this.remove();
             }
         });
 
-        cocktail.sortSelect($("#adminAllZutaten"), $("#adminAllZutaten option"));
+        cocktail.sortSelect($("#adminAllZutaten"));
     });
 
     $('#adminCocktailSave').click(function () {
         var name = $('#adminCocktailName').val();
         var zutaten = [];
 
-        $('#adminSelectedZutaten option').each(function () {
+        $('#adminSelectedZutaten').find('option').each(function () {
             zutaten.push($(this).val());
         });
 
         cocktail.saveCocktail(name, zutaten, function (response) {
             $('#adminCocktailName').val("");
-            $("#adminSelectedZutaten > option").each(function () {
+            $("#adminSelectedZutaten").find("> option").each(function () {
                 $("#adminAllZutaten").append('<option value="' + this.value + '" >' + this.text + '</option>');
                 this.remove();
             });
-            cocktail.sortSelect($("#adminAllZutaten"), $("#adminAllZutaten option"));
+            cocktail.sortSelect($("#adminAllZutaten"));
         });
     });
 });
