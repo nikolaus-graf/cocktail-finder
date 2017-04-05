@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
 
 @Service
@@ -30,6 +31,13 @@ public class CocktailService {
     @Transactional(readOnly = true)
     public Set<Zutat> getAllUsedZutaten() {
         return findCocktailKarte().getAllUsedZutaten();
+    }
+
+    @Transactional(readOnly = true)
+    public List<Zutat> findAllZutaten() {
+        return zutatRepository.findAll().stream()
+                .sorted(comparing(Zutat::getName))
+                .collect(toList());
     }
 
     @Transactional(readOnly = true)

@@ -1,6 +1,6 @@
 package org.graf.web.controller;
 
-import org.graf.services.AdminService;
+import org.graf.services.CocktailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,18 +12,18 @@ import java.util.Map;
 @Controller
 public class AdminController {
 
-    private final AdminService adminService;
+    private final CocktailService cocktailService;
 
     @Autowired
-    public AdminController(AdminService adminService) {
-        this.adminService = adminService;
+    public AdminController(CocktailService cocktailService) {
+        this.cocktailService = cocktailService;
     }
 
     @RequestMapping("/admin")
     public ModelAndView admin() {
         Map<String, Object> attributeMap = new HashMap<>();
 
-        attributeMap.put("zutaten", adminService.findAllZutaten());
+        attributeMap.put("zutaten", cocktailService.findAllZutaten());
 
         return new ModelAndView("admin", attributeMap);
     }

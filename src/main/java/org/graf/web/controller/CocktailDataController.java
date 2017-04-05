@@ -2,7 +2,6 @@ package org.graf.web.controller;
 
 import org.graf.model.Cocktail;
 import org.graf.model.Zutat;
-import org.graf.services.AdminService;
 import org.graf.services.CocktailService;
 import org.graf.web.formbeans.CocktailInfo;
 import org.graf.web.formbeans.CocktailTableInfo;
@@ -11,8 +10,6 @@ import org.graf.web.formbeans.ZutatTableInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -24,12 +21,11 @@ import static java.util.stream.Collectors.toList;
 public class CocktailDataController {
 
     private final CocktailService cocktailService;
-    private final AdminService adminService;
+
 
     @Autowired
-    public CocktailDataController(CocktailService cocktailService, AdminService adminService) {
+    public CocktailDataController(CocktailService cocktailService) {
         this.cocktailService = cocktailService;
-        this.adminService = adminService;
     }
 
     @GetMapping("/cocktail/data/cocktails")
@@ -39,7 +35,7 @@ public class CocktailDataController {
 
     @GetMapping("/admin/data/zutaten")
     public ZutatTableInfo getZutaten() {
-        return new ZutatTableInfo(adminService.findAllZutaten().stream()
+        return new ZutatTableInfo(cocktailService.findAllZutaten().stream()
                 .sorted(comparing(Zutat::getName))
                 .map(zutat -> new String[]{zutat.getName()})
                 .collect(toList()));
