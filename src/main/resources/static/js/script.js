@@ -1,11 +1,23 @@
 $(document).ready(function () {
-    $('#cocktailsCocktailTable')
+    $('#homeCocktailTable')
         .on('preXhr.dt', function (e, settings, data) {
             data.zutaten = $('#cocktailsZutaten').val();
         })
         .DataTable({
             ajax: '/data/cocktails',
-            searching: true,
+            searching: false,
+            paging: false,
+            ordering: false,
+            info: false,
+            scrollY: 200,
+            scrollCollapse: true,
+            scroller: true
+        })
+
+    $('#cocktailCocktailTable')
+        .DataTable({
+            ajax: '/data/cocktails',
+            searching: false,
             paging: false,
             ordering: false,
             info: false,
@@ -16,7 +28,7 @@ $(document).ready(function () {
 
     $('#cocktailsZutaten')
         .change(function () {
-            $('#cocktailsCocktailTable').DataTable().ajax.reload();
+            $('#homeCocktailTable').DataTable().ajax.reload();
         });
 
     $('#adminZutatTable')
@@ -119,6 +131,7 @@ $(document).ready(function () {
                 this.remove();
             });
             cocktail.sortSelect($("#adminAllZutaten"));
+            $('#cocktailCocktailTable').DataTable().ajax.reload();
         });
     });
 });
