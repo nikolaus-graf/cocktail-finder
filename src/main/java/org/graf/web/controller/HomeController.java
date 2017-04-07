@@ -10,21 +10,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-public class CocktailController {
+public class HomeController {
 
     private final CocktailService cocktailService;
 
     @Autowired
-    public CocktailController(CocktailService cocktailService) {
+    public HomeController(CocktailService cocktailService) {
         this.cocktailService = cocktailService;
     }
 
-    @RequestMapping("/cocktails")
-    public ModelAndView admin() {
+    @RequestMapping("/")
+    public ModelAndView home() {
         Map<String, Object> attributeMap = new HashMap<>();
 
-        attributeMap.put("zutaten", cocktailService.findAllZutaten());
+        attributeMap.put("zutaten", cocktailService.findAllUsedZutaten());
 
-        return new ModelAndView("cocktails", attributeMap);
+        return new ModelAndView("home", attributeMap);
     }
 }

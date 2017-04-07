@@ -29,7 +29,7 @@ public class CocktailService {
     }
 
     @Transactional(readOnly = true)
-    public Set<Zutat> getAllUsedZutaten() {
+    public List<Zutat> findAllUsedZutaten() {
         return findCocktailKarte().getAllUsedZutaten();
     }
 

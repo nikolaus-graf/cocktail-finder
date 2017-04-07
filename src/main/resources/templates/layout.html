@@ -14,11 +14,14 @@
 <div class="container">
     <ul class="nav nav-tabs">
         <!-- Other links -->
-        <li role="presentation" th:class="${classActiveCocktails}">
-            <a th:href="@{/}">Cocktails</a>
+        <li role="presentation" th:class="${classActiveHome}">
+            <a th:href="@{/}">Home</a>
         </li>
-        <li role="presentation" th:class="${classActiveAdmin}">
-            <a th:href="@{/admin}">Admin</a>
+        <li role="presentation" th:class="${classActiveCocktail}">
+            <a th:href="@{/cocktails}">Cocktails</a>
+        </li>
+        <li role="presentation" th:class="${classActiveZutaten}">
+            <a th:href="@{/zutaten}">Zutaten</a>
         </li>
     </ul>
     <div layout:fragment="content">

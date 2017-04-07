@@ -4,7 +4,7 @@ $(document).ready(function () {
             data.zutaten = $('#cocktailsZutaten').val();
         })
         .DataTable({
-            ajax: '/cocktail/data/cocktails',
+            ajax: '/data/cocktails',
             searching: true,
             paging: false,
             ordering: false,
@@ -21,7 +21,7 @@ $(document).ready(function () {
 
     $('#adminZutatTable')
         .DataTable({
-            ajax: '/admin/data/zutaten',
+            ajax: '/data/zutaten',
             searching: false,
             paging: false,
             ordering: false,
@@ -35,7 +35,7 @@ $(document).ready(function () {
         saveZutat: function (name, callback) {
             $.ajax({
                 type: "PUT",
-                url: "/admin/data/zutat",
+                url: "/data/zutat",
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify({
                     "name": name
@@ -52,7 +52,7 @@ $(document).ready(function () {
         saveCocktail: function (name, zutaten, callback) {
             $.ajax({
                 type: "PUT",
-                url: "/admin/data/cocktail",
+                url: "/data/cocktail",
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify({
                     "name": name,

@@ -1,13 +1,13 @@
 package org.graf.web.controller.advice;
 
-import org.graf.web.controller.AdminController;
+import org.graf.web.controller.HomeController;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-@ControllerAdvice(assignableTypes = AdminController.class)
-public class AdminControllerAdvice {
+@ControllerAdvice(assignableTypes = HomeController.class)
+public class HomeControllerAdvice {
 
-    @ModelAttribute("classActiveAdmin")
+    @ModelAttribute("classActiveHome")
     public String cssActivePage() {
         return "active";
     }

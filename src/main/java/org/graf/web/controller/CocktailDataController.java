@@ -28,12 +28,12 @@ public class CocktailDataController {
         this.cocktailService = cocktailService;
     }
 
-    @GetMapping("/cocktail/data/cocktails")
+    @GetMapping("/data/cocktails")
     public CocktailTableInfo getCocktails(@RequestParam(value = "zutaten[]", required = false) String[] zutaten) {
         return new CocktailTableInfo(mapToTableData(cocktailService.findCocktailsWithZutaten(zutaten == null ? emptyList() : asList(zutaten))));
     }
 
-    @GetMapping("/admin/data/zutaten")
+    @GetMapping("/data/zutaten")
     public ZutatTableInfo getZutaten() {
         return new ZutatTableInfo(cocktailService.findAllZutaten().stream()
                 .sorted(comparing(Zutat::getName))
@@ -41,12 +41,12 @@ public class CocktailDataController {
                 .collect(toList()));
     }
 
-    @PutMapping("/admin/data/zutat")
+    @PutMapping("/data/zutat")
     public void saveZutat(@RequestBody ZutatInfo zutatInfo) {
         cocktailService.ensureZutatExists(zutatInfo.getName());
     }
 
-    @PutMapping("/admin/data/cocktail")
+    @PutMapping("/data/cocktail")
     public void saveCocktail(@RequestBody CocktailInfo cocktailInfo) {
         cocktailService.saveCocktail(cocktailInfo.getName(), asList(cocktailInfo.getZutaten()));
     }

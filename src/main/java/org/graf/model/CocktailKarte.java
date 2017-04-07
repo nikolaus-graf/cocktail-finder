@@ -31,12 +31,12 @@ public class CocktailKarte extends AbstractBaseEntity {
         cocktail.setCocktailKarte(this);
     }
 
-    public Set<Zutat> getAllUsedZutaten() {
+    public List<Zutat> getAllUsedZutaten() {
         return cocktails.stream()
                 .flatMap(cocktail -> cocktail.getZutaten().stream())
                 .distinct()
                 .sorted(comparing(Zutat::getName))
-                .collect(toSet());
+                .collect(toList());
     }
 
     public List<Cocktail> findCocktailsWithZutaten(List<String> zutaten) {
