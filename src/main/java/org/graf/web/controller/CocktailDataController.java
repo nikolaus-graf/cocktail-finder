@@ -46,9 +46,19 @@ public class CocktailDataController {
         cocktailService.ensureZutatExists(zutatInfo.getName());
     }
 
+    @DeleteMapping("/data/zutat/{name}")
+    public void removeZutat(@PathVariable(value="name") String name){
+        cocktailService.removeZutat(name);
+    }
+
     @PutMapping("/data/cocktail")
     public void saveCocktail(@RequestBody CocktailInfo cocktailInfo) {
         cocktailService.saveCocktail(cocktailInfo.getName(), asList(cocktailInfo.getZutaten()));
+    }
+
+    @DeleteMapping("/data/cocktail/{name}")
+    public void removeCocktail(@PathVariable(value="name") String name){
+        cocktailService.removeCocktail(name);
     }
 
     private List<String[]> mapToTableData(List<Cocktail> cocktailsWithZutaten) {

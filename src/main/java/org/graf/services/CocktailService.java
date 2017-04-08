@@ -73,4 +73,21 @@ public class CocktailService {
                 .collect(toList());
         findCocktailKarte().addCocktail(new Cocktail(name, zutaten));
     }
+
+    @Transactional
+    public boolean removeZutat(String name) {
+        Zutat zutat = zutatRepository.findByName(name);
+        List<Zutat> usedZutaten = findAllUsedZutaten();
+        if(!usedZutaten.contains(zutat)){
+            zutatRepository.delete(zutat);
+            return true;
+        }
+        return false;
+    }
+
+    @Transactional
+    public void removeCocktail(String name) {
+        CocktailKarte cocktailKarte = findCocktailKarte();
+        cocktailKarte.removeCocktail(name);
+    }
 }

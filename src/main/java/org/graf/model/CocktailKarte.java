@@ -46,5 +46,13 @@ public class CocktailKarte extends AbstractBaseEntity {
                 .collect(toList());
     }
 
+    public void removeCocktail(String name) {
+        Cocktail cocktail = cocktails.stream()
+                .filter(c -> name.equals(c.getName()))
+                .findFirst().orElse(null);
+        if(cocktail != null){
+            cocktails.remove(cocktail);
 
+        }
+    }
 }
