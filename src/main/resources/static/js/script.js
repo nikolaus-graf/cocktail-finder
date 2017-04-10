@@ -50,7 +50,10 @@ $(document).ready(function () {
             columnDefs: [{
                 targets: 1,
                 render: function (data, type, row, meta) {
-                    return '<a href="#" onclick="zutat.removeZutat(\'' + row[0] + '\');return false;"><span class="glyphicon glyphicon-remove"></span></a>';
+                    if(row[1] == 'false') {
+                        return '<a href="#" onclick="zutat.removeZutat(\'' + row[0] + '\');return false;"><span class="glyphicon glyphicon-remove"></span></a>';
+                    }
+                    return '';
                 }
             }]
         });

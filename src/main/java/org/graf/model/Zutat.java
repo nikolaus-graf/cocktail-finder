@@ -1,9 +1,10 @@
 package org.graf.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static javax.persistence.FetchType.EAGER;
 
 @Entity
 @Table(name = "Zutat", uniqueConstraints = {@UniqueConstraint(name = "uq_zutat_zutat", columnNames = {"name"})})
@@ -16,6 +17,9 @@ public class Zutat extends AbstractBaseEntity {
 
     @Column(name = "name")
     private String name;
+
+    @ManyToMany(mappedBy = "zutaten", fetch = EAGER)
+    private List<Cocktail> cocktails = new ArrayList<>();
 
     public Zutat() {
 
@@ -33,10 +37,19 @@ public class Zutat extends AbstractBaseEntity {
         this.name = name;
     }
 
+    public void addCocktail(Cocktail cocktail) {
+        cocktails.add(cocktail);
+    }
+
+    public boolean hasCocktails(){
+        return !cocktails.isEmpty();
+    }
+
     @Override
     public String toString() {
         return "Zutat [name=" + name + "]";
     }
+
 
 
 }

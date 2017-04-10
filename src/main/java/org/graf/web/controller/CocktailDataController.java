@@ -37,7 +37,7 @@ public class CocktailDataController {
     public ZutatTableInfo getZutaten() {
         return new ZutatTableInfo(cocktailService.findAllZutaten().stream()
                 .sorted(comparing(Zutat::getName))
-                .map(zutat -> new String[]{zutat.getName()})
+                .map(zutat -> new String[]{zutat.getName(), Boolean.toString(zutat.hasCocktails())})
                 .collect(toList()));
     }
 

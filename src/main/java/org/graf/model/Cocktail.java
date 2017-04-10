@@ -51,6 +51,7 @@ public class Cocktail extends AbstractBaseEntity {
 
     public Cocktail addZutat(Zutat zutat) {
         zutaten.add(zutat);
+        zutat.addCocktail(this);
         return this;
     }
 
