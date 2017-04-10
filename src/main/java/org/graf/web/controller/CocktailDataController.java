@@ -41,22 +41,22 @@ public class CocktailDataController {
                 .collect(toList()));
     }
 
-    @PutMapping("/data/zutat")
+    @PutMapping("zutaten/data/zutat")
     public void saveZutat(@RequestBody ZutatInfo zutatInfo) {
         cocktailService.ensureZutatExists(zutatInfo.getName());
     }
 
-    @DeleteMapping("/data/zutat/{name}")
+    @DeleteMapping("zutaten/data/zutat/{name}")
     public void removeZutat(@PathVariable(value="name") String name){
         cocktailService.removeZutat(name);
     }
 
-    @PutMapping("/data/cocktail")
+    @PutMapping("cocktails/data/cocktail")
     public void saveCocktail(@RequestBody CocktailInfo cocktailInfo) {
         cocktailService.saveCocktail(cocktailInfo.getName(), asList(cocktailInfo.getZutaten()));
     }
 
-    @DeleteMapping("/data/cocktail/{name}")
+    @DeleteMapping("cocktails/data/cocktail/{name}")
     public void removeCocktail(@PathVariable(value="name") String name){
         cocktailService.removeCocktail(name);
     }

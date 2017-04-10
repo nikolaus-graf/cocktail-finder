@@ -66,6 +66,16 @@ $(document).ready(function () {
         });
     });
 
+    $("#zutatZutatName").on('keyup', function (e) {
+        if (e.keyCode == 13) {
+            var name = $('#zutatZutatName').val();
+            zutat.saveZutat(name, function (response) {
+                $('#zutatZutatName').val("");
+                $('#zutatZutatTable').DataTable().ajax.reload();
+            });
+        }
+    });
+
     $('#cocktailAddZutat').click(function () {
         $("#cocktailAllZutaten").find("> option").each(function () {
             if (this.selected === true) {
@@ -111,7 +121,7 @@ var zutat = {
     saveZutat: function (name, callback) {
         $.ajax({
             type: "PUT",
-            url: "/data/zutat",
+            url: "zutaten/data/zutat",
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
                 "name": name
@@ -125,7 +135,7 @@ var zutat = {
     removeZutat: function (name) {
         $.ajax({
             type: "DELETE",
-            url: "/data/zutat/" + name
+            url: "zutaten/data/zutat/" + name
         }).done(function (response) {
             $('#zutatZutatTable').DataTable().ajax.reload();
         });
@@ -136,7 +146,7 @@ var cocktail = {
     saveCocktail: function (name, zutaten, callback) {
         $.ajax({
             type: "PUT",
-            url: "/data/cocktail",
+            url: "cocktails/data/cocktail",
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
                 "name": name,
@@ -148,6 +158,14 @@ var cocktail = {
             }
         });
     },
+    removeCocktail: function (name) {
+        $.ajax({
+            type: "DELETE",
+            url: "cocktails/data/cocktail/" + name
+        }).done(function (response) {
+            $('#cocktailCocktailTable').DataTable().ajax.reload();
+        });
+    },
     sortSelect: function (select) {
         var options = select.find("option")
         options.sort(function (a, b) {
@@ -156,13 +174,5 @@ var cocktail = {
             return 0
         });
         select.empty().append(options);
-    },
-    removeCocktail: function (name) {
-        $.ajax({
-            type: "DELETE",
-            url: "/data/cocktail/" + name
-        }).done(function (response) {
-            $('#cocktailCocktailTable').DataTable().ajax.reload();
-        });
     }
 };
