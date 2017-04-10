@@ -37,7 +37,7 @@ $(document).ready(function () {
             $('#homeCocktailTable').DataTable().ajax.reload();
         });
 
-    $('#adminZutatTable')
+    $('#zutatZutatTable')
         .DataTable({
             ajax: '/data/zutaten',
             searching: false,
@@ -58,50 +58,50 @@ $(document).ready(function () {
             }]
         });
 
-    $('#adminZutatSave').click(function () {
-        var name = $('#adminZutatName').val();
+    $('#zutatZutatSave').click(function () {
+        var name = $('#zutatZutatName').val();
         zutat.saveZutat(name, function (response) {
-            $('#adminZutatName').val("");
-            $('#adminZutatTable').DataTable().ajax.reload();
+            $('#zutatZutatName').val("");
+            $('#zutatZutatTable').DataTable().ajax.reload();
         });
     });
 
-    $('#adminAddZutat').click(function () {
-        $("#adminAllZutaten").find("> option").each(function () {
+    $('#cocktailAddZutat').click(function () {
+        $("#cocktailAllZutaten").find("> option").each(function () {
             if (this.selected === true) {
-                $("#adminSelectedZutaten").append('<option value="' + this.value + '" >' + this.text + '</option>');
+                $("#cocktailSelectedZutaten").append('<option value="' + this.value + '" >' + this.text + '</option>');
                 this.remove();
             }
         });
-        cocktail.sortSelect($("#adminSelectedZutaten"));
+        cocktail.sortSelect($("#cocktailSelectedZutaten"));
     });
 
-    $('#adminRemoveZutat').click(function () {
-        $("#adminSelectedZutaten").find("> option").each(function () {
+    $('#zutatRemoveZutat').click(function () {
+        $("#cocktailSelectedZutaten").find("> option").each(function () {
             if (this.selected === true) {
-                $("#adminAllZutaten").append('<option value="' + this.value + '" >' + this.text + '</option>');
+                $("#cocktailAllZutaten").append('<option value="' + this.value + '" >' + this.text + '</option>');
                 this.remove();
             }
         });
 
-        cocktail.sortSelect($("#adminAllZutaten"));
+        cocktail.sortSelect($("#cocktailAllZutaten"));
     });
 
-    $('#adminCocktailSave').click(function () {
-        var name = $('#adminCocktailName').val();
+    $('#cocktailCocktailSave').click(function () {
+        var name = $('#cocktailCocktailName').val();
         var zutaten = [];
 
-        $('#adminSelectedZutaten').find('option').each(function () {
+        $('#cocktailSelectedZutaten').find('option').each(function () {
             zutaten.push($(this).val());
         });
 
         cocktail.saveCocktail(name, zutaten, function (response) {
-            $('#adminCocktailName').val("");
-            $("#adminSelectedZutaten").find("> option").each(function () {
-                $("#adminAllZutaten").append('<option value="' + this.value + '" >' + this.text + '</option>');
+            $('#cocktailCocktailName').val("");
+            $("#cocktailSelectedZutaten").find("> option").each(function () {
+                $("#cocktailAllZutaten").append('<option value="' + this.value + '" >' + this.text + '</option>');
                 this.remove();
             });
-            cocktail.sortSelect($("#adminAllZutaten"));
+            cocktail.sortSelect($("#cocktailAllZutaten"));
             $('#cocktailCocktailTable').DataTable().ajax.reload();
         });
     });
@@ -127,7 +127,7 @@ var zutat = {
             type: "DELETE",
             url: "/data/zutat/" + name
         }).done(function (response) {
-            $('#adminZutatTable').DataTable().ajax.reload();
+            $('#zutatZutatTable').DataTable().ajax.reload();
         });
     }
 };
