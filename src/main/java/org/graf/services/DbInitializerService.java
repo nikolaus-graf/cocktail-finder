@@ -4,11 +4,11 @@ import org.graf.model.Cocktail;
 import org.graf.model.CocktailKarte;
 import org.graf.model.Zutat;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
-import java.util.Arrays;
 
 import static java.util.Arrays.asList;
 
@@ -16,10 +16,12 @@ import static java.util.Arrays.asList;
 public class DbInitializerService {
 
     private final CocktailService cocktailService;
+    private final UserService userService;
 
     @Autowired
-    public DbInitializerService(CocktailService cocktailService) {
+    public DbInitializerService(CocktailService cocktailService, UserService userService) {
         this.cocktailService = cocktailService;
+        this.userService = userService;
     }
 
     @PostConstruct
@@ -46,6 +48,8 @@ public class DbInitializerService {
         cocktailKarte.addCocktail(new Cocktail("Caipirinha", asList(braunerZucker, cachaca, limette)));
 
         cocktailService.save(cocktailKarte);
+
+        userService.create("admin", new BCryptPasswordEncoder().encode("admin"));
     }
 
 }

@@ -1,4 +1,8 @@
 $(document).ready(function () {
+    $('#loginLink').click(function() {
+        $('#loginDiv').fadeIn('slow');
+    });
+
     $('#homeCocktailTable')
         .on('preXhr.dt', function (e, settings, data) {
             data.zutaten = $('#cocktailsZutaten').val();
@@ -119,10 +123,15 @@ $(document).ready(function () {
 
 var zutat = {
     saveZutat: function (name, callback) {
+        var header = $("meta[name='_csrf_header']").attr("content");
+        var token = $("meta[name='_csrf']").attr("content");
         $.ajax({
             type: "PUT",
             url: "zutaten/data/zutat",
             contentType: 'application/json; charset=utf-8',
+            beforeSend: function(request) {
+                request.setRequestHeader(header, token);
+            },
             data: JSON.stringify({
                 "name": name
             })
@@ -133,9 +142,14 @@ var zutat = {
         });
     },
     removeZutat: function (name) {
+        var header = $("meta[name='_csrf_header']").attr("content");
+        var token = $("meta[name='_csrf']").attr("content");
         $.ajax({
             type: "DELETE",
-            url: "zutaten/data/zutat/" + name
+            url: "zutaten/data/zutat/" + name,
+            beforeSend: function(request) {
+                request.setRequestHeader(header, token);
+            }
         }).done(function (response) {
             $('#zutatZutatTable').DataTable().ajax.reload();
         });
@@ -144,10 +158,15 @@ var zutat = {
 
 var cocktail = {
     saveCocktail: function (name, zutaten, callback) {
+        var header = $("meta[name='_csrf_header']").attr("content");
+        var token = $("meta[name='_csrf']").attr("content");
         $.ajax({
             type: "PUT",
             url: "cocktails/data/cocktail",
             contentType: 'application/json; charset=utf-8',
+            beforeSend: function(request) {
+                request.setRequestHeader(header, token);
+            },
             data: JSON.stringify({
                 "name": name,
                 "zutaten": zutaten
@@ -159,9 +178,14 @@ var cocktail = {
         });
     },
     removeCocktail: function (name) {
+        var header = $("meta[name='_csrf_header']").attr("content");
+        var token = $("meta[name='_csrf']").attr("content");
         $.ajax({
             type: "DELETE",
-            url: "cocktails/data/cocktail/" + name
+            url: "cocktails/data/cocktail/" + name,
+            beforeSend: function(request) {
+                request.setRequestHeader(header, token);
+            }
         }).done(function (response) {
             $('#cocktailCocktailTable').DataTable().ajax.reload();
         });

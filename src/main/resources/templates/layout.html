@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/jquery.dataTables.min.css}"/>
     <script type="text/javascript" th:src="@{/js/jquery/jquery.min.js}"></script>
@@ -11,8 +13,31 @@
     <title>Cocktail Finder</title>
 </head>
 <body>
+<div th:if="${currentUser == null}">
+<a id="loginLink" href="#">Login</a>
+</div>
+<div th:if="${currentUser != null}">
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+
+<div id="loginDiv" style="display: none;">
+    <form role="form" th:action="@{/login}" method="post">
+        <div>
+            <label for="username">User Name</label>
+            <input type="text" name="username" id="username"/>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password"/>
+        </div>
+        <button type="submit">Sign in</button>
+    </form>
+</div>
+
 <div class="container">
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs" th:if="${currentUser != null}">
         <!-- Other links -->
         <li role="presentation" th:class="${classActiveHome}">
             <a th:href="@{/}">Home</a>
