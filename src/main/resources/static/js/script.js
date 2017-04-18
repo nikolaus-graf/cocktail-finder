@@ -1,6 +1,12 @@
 $(document).ready(function () {
-    $('#loginLink').click(function() {
+    $('#loginLink').click(function(e) {
         $('#loginDiv').fadeIn('slow');
+        e.preventDefault();
+    });
+
+    $('#logoutLink').click(function(e) {
+        $('#logoutForm').submit();
+        e.preventDefault();
     });
 
     $('#homeCocktailTable')

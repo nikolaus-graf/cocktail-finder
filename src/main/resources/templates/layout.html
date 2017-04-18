@@ -13,12 +13,13 @@
     <title>Cocktail Finder</title>
 </head>
 <body>
+<div class="container">
 <div th:if="${currentUser == null}">
 <a id="loginLink" href="#">Login</a>
 </div>
 <div th:if="${currentUser != null}">
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out"/>
+    <form id="logoutForm" th:action="@{/logout}" method="post">
+        <a id="logoutLink" href="#">Logout</a>
     </form>
 </div>
 
@@ -36,7 +37,7 @@
     </form>
 </div>
 
-<div class="container">
+
     <ul class="nav nav-tabs" th:if="${currentUser != null}">
         <!-- Other links -->
         <li role="presentation" th:class="${classActiveHome}">
