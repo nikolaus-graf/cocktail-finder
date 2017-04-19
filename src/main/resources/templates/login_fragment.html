@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="login">
+    <form role="form" th:action="@{/login}" method="post">
+
+        <div class="row grid-divider">
+            <div class="col-sm-1">
+                <label for="username">Username</label>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" name="username" id="username"/>
+            </div>
+        </div>
+        <br/>
+        <div class="row grid-divider">
+            <div class="col-sm-1">
+                <label for="password">Password</label>
+            </div>
+            <div class="col-sm-2">
+                <input type="password" name="password" id="password"/>
+            </div>
+            <div class="col-sm-7">
+                <input type="submit" value="Sign in"/>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
