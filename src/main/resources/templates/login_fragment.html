@@ -3,6 +3,9 @@
 <body>
 <div th:fragment="login">
     <form role="form" th:action="@{/login}" method="post">
+        <div th:if="${param.error}" class="alert alert-danger">
+            Invalid username and password.
+        </div>
 
         <div class="row grid-divider">
             <div class="col-sm-1">
