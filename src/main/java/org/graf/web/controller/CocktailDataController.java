@@ -76,6 +76,9 @@ public class CocktailDataController {
         if (cocktailInfo.getZutaten() == null || cocktailInfo.getZutaten().length < 2) {
             return new Result("Es müssen mindestens zwei Zutaten ausgewält sein");
         }
+        if(cocktailService.cocktailExists(cocktailInfo.getName())){
+            return new Result("Ein Cocktail mit diesem Namen existiert bereits");
+        }
         try {
             cocktailService.saveCocktail(cocktailInfo.getName(), asList(cocktailInfo.getZutaten()));
         } catch (Exception ex) {

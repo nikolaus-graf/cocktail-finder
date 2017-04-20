@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static java.util.Collections.emptyList;
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
 
@@ -83,6 +85,14 @@ public class CocktailService {
             return true;
         }
         return false;
+    }
+
+    @Transactional(readOnly = true)
+    public boolean cocktailExists(String name){
+        CocktailKarte cocktailKarte = findCocktailKarte();
+        return cocktailKarte.findCocktailsWithZutaten(emptyList()).stream()
+                .filter(cocktail -> cocktail.getName().equals(name))
+                .findAny().orElse(null) != null;
     }
 
     @Transactional
