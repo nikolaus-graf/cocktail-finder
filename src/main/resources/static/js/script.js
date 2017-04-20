@@ -71,8 +71,16 @@ $(document).ready(function () {
     $('#zutatZutatSave').click(function () {
         var name = $('#zutatZutatName').val();
         zutat.saveZutat(name, function (response) {
-            $('#zutatZutatName').val("");
-            $('#zutatZutatTable').DataTable().ajax.reload();
+            if(response.success){
+                $("#errorDiv").text("");
+                $("#errorDiv").fadeOut();
+                $('#zutatZutatName').val("");
+                $('#zutatZutatTable').DataTable().ajax.reload();
+            } else {
+                $("#errorDiv").text(response.error);
+                $("#errorDiv").fadeIn("slow");
+
+            }
         });
     });
 
@@ -80,8 +88,16 @@ $(document).ready(function () {
         if (e.keyCode == 13) {
             var name = $('#zutatZutatName').val();
             zutat.saveZutat(name, function (response) {
-                $('#zutatZutatName').val("");
-                $('#zutatZutatTable').DataTable().ajax.reload();
+                if(response.success){
+                    $("#errorDiv").text("");
+                    $("#errorDiv").fadeOut();
+                    $('#zutatZutatName').val("");
+                    $('#zutatZutatTable').DataTable().ajax.reload();
+                } else {
+                    $("#errorDiv").text(response.error);
+                    $("#errorDiv").fadeIn("slow");
+
+                }
             });
         }
     });
@@ -96,7 +112,7 @@ $(document).ready(function () {
         cocktail.sortSelect($("#cocktailSelectedZutaten"));
     });
 
-    $('#zutatRemoveZutat').click(function () {
+    $('#cocktailRemoveZutat').click(function () {
         $("#cocktailSelectedZutaten").find("> option").each(function () {
             if (this.selected === true) {
                 $("#cocktailAllZutaten").append('<option value="' + this.value + '" >' + this.text + '</option>');
@@ -116,13 +132,20 @@ $(document).ready(function () {
         });
 
         cocktail.saveCocktail(name, zutaten, function (response) {
-            $('#cocktailCocktailName').val("");
-            $("#cocktailSelectedZutaten").find("> option").each(function () {
-                $("#cocktailAllZutaten").append('<option value="' + this.value + '" >' + this.text + '</option>');
-                this.remove();
-            });
-            cocktail.sortSelect($("#cocktailAllZutaten"));
-            $('#cocktailCocktailTable').DataTable().ajax.reload();
+            if(response.success){
+                $("#errorDiv").text("");
+                $("#errorDiv").fadeOut();
+                $('#cocktailCocktailName').val("");
+                $("#cocktailSelectedZutaten").find("> option").each(function () {
+                    $("#cocktailAllZutaten").append('<option value="' + this.value + '" >' + this.text + '</option>');
+                    this.remove();
+                });
+                cocktail.sortSelect($("#cocktailAllZutaten"));
+                $('#cocktailCocktailTable').DataTable().ajax.reload();
+            } else {
+                $("#errorDiv").text(response.error);
+                $("#errorDiv").fadeIn("slow");
+            }
         });
     });
 });
@@ -157,7 +180,15 @@ var zutat = {
                 request.setRequestHeader(header, token);
             }
         }).done(function (response) {
-            $('#zutatZutatTable').DataTable().ajax.reload();
+            if(response.success){
+                $("#errorDiv").text("");
+                $("#errorDiv").fadeOut();
+                $('#zutatZutatTable').DataTable().ajax.reload();
+            } else {
+                $("#errorDiv").text(response.error);
+                $("#errorDiv").fadeIn("slow");
+
+            }
         });
     }
 };
@@ -193,7 +224,15 @@ var cocktail = {
                 request.setRequestHeader(header, token);
             }
         }).done(function (response) {
-            $('#cocktailCocktailTable').DataTable().ajax.reload();
+            if(response.success){
+                $("#errorDiv").text("");
+                $("#errorDiv").fadeOut();
+                $('#cocktailCocktailTable').DataTable().ajax.reload();
+            } else {
+                $("#errorDiv").text(response.error);
+                $("#errorDiv").fadeIn("slow");
+
+            }
         });
     },
     sortSelect: function (select) {
