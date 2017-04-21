@@ -16,15 +16,15 @@
 <div class="container">
     <div th:if="${currentUser == null}">
         <a id="loginLink" href="#">Login</a>
+        <div id="loginDiv" class="container" style="display: none;">
+            <div th:include="login_fragment :: login"></div>
+        </div>
     </div>
     <div th:if="${currentUser != null}">
         <p>Logged in as <span th:text="${currentUser.username}"></span></p>
         <form id="logoutForm" th:action="@{/logout}" method="post">
             <a id="logoutLink" href="#">Logout</a>
         </form>
-    </div>
-    <div id="loginDiv" class="container" style="display: none;">
-        <div th:include="login_fragment :: login"></div>
     </div>
 
 
