@@ -22,8 +22,9 @@ public class CocktailKarte extends AbstractBaseEntity {
     @OneToMany(mappedBy = "cocktailKarte", cascade = ALL, orphanRemoval = true, fetch = EAGER)
     private List<Cocktail> cocktails = new ArrayList<>();
 
+    @Deprecated
     public CocktailKarte() {
-
+        //JPA use only
     }
 
     public void addCocktail(Cocktail cocktail) {

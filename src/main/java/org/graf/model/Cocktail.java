@@ -27,8 +27,9 @@ public class Cocktail extends AbstractBaseEntity {
     @JoinColumn(name = "cocktailkarte_id", foreignKey = @ForeignKey(name = "fk_cocktail_cocktailkarte_id"))
     private CocktailKarte cocktailKarte;
 
+    @Deprecated
     public Cocktail() {
-
+        //JPA use only
     }
 
     public Cocktail(String name, List<Zutat> zutaten) {

@@ -17,7 +17,9 @@ public class User extends AbstractBaseEntity{
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
+    @Deprecated
     public User() {
+        //JPA use only
     }
 
     public User(String userName, String passwordHash) {

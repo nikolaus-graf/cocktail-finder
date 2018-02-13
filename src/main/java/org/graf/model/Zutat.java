@@ -21,8 +21,9 @@ public class Zutat extends AbstractBaseEntity {
     @ManyToMany(mappedBy = "zutaten", fetch = EAGER)
     private List<Cocktail> cocktails = new ArrayList<>();
 
+    @Deprecated
     public Zutat() {
-
+        //JPA use only
     }
 
     public Zutat(String name) {
